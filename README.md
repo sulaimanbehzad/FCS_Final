@@ -1,3 +1,4 @@
 # FCS_Final
-## currently working on: initial setup
+DONE: initial setup
+## Currently Working On: adding view to registration
 
