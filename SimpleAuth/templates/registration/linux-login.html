@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+</head>
+<body>
+    <div style="width: 500px; margin: 0 auto;">
+        <h3>Login using Linux Account Creditentials</h3>
+
+        <form action="/login/" method="post">{% csrf_token %}
+            <div style="margin: 5px auto">
+                <label for="username">Username</label>
+                <input type="text" name="username" id="username">
+            </div>
+            
+            <div style="margin: 5px auto">
+                <label for="passwd">Password</label>
+                <input type="password" name="passwd" id="passwd">
+            </div>
+            <input type="submit" value="Login">
+        </form>
+    </div>
+</body>
+</html>
