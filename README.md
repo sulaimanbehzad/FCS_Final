@@ -1,4 +1,5 @@
 # FCS_Final
 DONE: initial setup
-## Currently Working On: adding view to registration
+DONE: project first phase / login with linux credentials
+Todo: second phase / user specific user access
 
