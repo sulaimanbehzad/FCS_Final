@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Files</title>
+</head>
+<body>
+<h1>here are your files: </h1>
+<div style="width: 500px; margin: 0 auto;">
+        <form action="/viewFiles/" method="GET">{% csrf_token %}
+            <p>{{files_list}}</p>
+        </form>
+    </div>
+</body>
+</html>

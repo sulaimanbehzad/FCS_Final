@@ -53,11 +53,28 @@ def login(request: HttpRequest):
 
         print(f'{the_hash}')
         if the_hash.stdout == user_input.stdout:
+            request.session.set_expiry(86400)
+            request.session['username'] = username
             return render(request, 'home/home.html')
         else:
             return render(request, 'registration/linux-login.html')
     
 
+def viewFiles(request):
+    if request.method=="GET":
+        username = None
+        print(f'{request}')
+        if request.session['username'] != None:
+            print('authenticated')
+            username = request.session['username']
+            print(username)
+        cmd = f"""ls -l | grep {username}"""
+        output = subprocess.run(cmd, shell=True, capture_output=True, text=True)
+        print(f'{output.stdout}')
+        context={'files_list': output.stdout}
+        return render(request, 'fileViewer/files.html', context)
+    else:
+        return render(request, 'registration/linux-login.html')
 
 # def signup(request):
 #     if request.user.is_authenticated:
