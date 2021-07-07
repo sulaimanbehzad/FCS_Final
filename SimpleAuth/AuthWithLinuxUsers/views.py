@@ -38,7 +38,7 @@ def login(request: HttpRequest):
         cmd1 = f"""openssl passwd -6 -salt $( sudo cat /etc/shadow | grep "^{username}:.*$" | cut -d'$' -f3 ) {passwd} | cut -d'$' -f4"""
         user_input = subprocess.run(cmd1, shell=True, capture_output=True, text=True,)
         print(f'{user_input}')
-        cmd2 = f"""sudo cat /etc/shadow | grep "^hamed:.*$" | cut -d'$' -f4 | cut -d':' -f1"""
+        cmd2 = f"""sudo cat /etc/shadow | grep "^{username}:.*$" | cut -d'$' -f4 | cut -d':' -f1"""
         the_hash = subprocess.run(cmd2, shell=True, capture_output=True, text=True)
         
         request_data = models.UserAccessInformationModel(
