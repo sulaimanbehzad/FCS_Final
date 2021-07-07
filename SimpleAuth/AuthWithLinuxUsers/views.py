@@ -1,3 +1,5 @@
+import os
+
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
@@ -68,11 +70,14 @@ def viewFiles(request):
             print('authenticated')
             username = request.session['username']
             print(username)
-        cmd = f"""ls -l | grep {username}"""
-        output = subprocess.run(cmd, shell=True, capture_output=True, text=True)
-        print(f'{output.stdout}')
-        context={'files_list': output.stdout}
-        return render(request, 'fileViewer/files.html', context)
+            os.chdir('files/')
+            cmd2= f"""ls -l | grep {username}"""
+            output = subprocess.run(cmd2, shell=True, capture_output=True, text=True)
+            print(f'{output.stdout}')
+            context={'files_list': output.stdout}
+            return render(request, 'fileViewer/files.html', context)
+        else:
+            return render(request, 'registration/linux-login.html')
     else:
         return render(request, 'registration/linux-login.html')
 
