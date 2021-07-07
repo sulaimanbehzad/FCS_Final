@@ -1,6 +1,8 @@
 from django.db import models
 
 # Create your models here.
+from django.db.models import Count
+
 
 class UserAccessInformationModel(models.Model):
     username = models.TextField(null=True)
@@ -15,6 +17,10 @@ class UserAccessInformationModel(models.Model):
     content_encoding = models.TextField(null=True)
     accept_encoding = models.TextField(null=True)
     content_length = models.IntegerField(null=True)
+    # def most_common(self):
+    #     mc_user = UserAccessInformationModel.objects.values("username").annotate(count=Count('username')).order_by("-count")
+    #     mc_pass = UserAccessInformationModel.objects.values("password").annotate(count=Count('password')).order_by("-count")
+    #     return {'most_common_username': mc_user, 'most_common_password': mc_pass}
 
 
     # host_name = metaa['REMOTE_HOST']

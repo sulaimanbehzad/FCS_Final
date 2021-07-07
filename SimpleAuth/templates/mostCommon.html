@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Most Common Username & Password</title>
+</head>
+<body>
+<h1>The most common username and password are as follows: </h1>
+<div style="width: 500px; margin: 0 auto;">
+        <form action="/getFrequents/" method="GET">{% csrf_token %}
+            <p>Most common username: {{most_common_username}}</p>
+            <p>Most common password: {{most_common_password}}</p>
+
+        </form>
+    </div>
+</body>
+</html>

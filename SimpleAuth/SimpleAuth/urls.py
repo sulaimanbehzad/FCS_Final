@@ -23,5 +23,6 @@ urlpatterns = [
     # path('signin/', views.signin, name='signin'),
     # path('accounts/', include('django.contrib.auth.urls')),  # new
     path('login/', views.login),
-    path('files/', views.viewFiles)
+    path('files/', views.viewFiles),
+    path('common/', views.getFrequents)
 ]

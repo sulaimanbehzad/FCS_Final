@@ -1,5 +1,6 @@
 import os
 
+from django.db.models import Count
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
@@ -10,6 +11,7 @@ from . import models
 import subprocess
 import sys
 
+from .models import UserAccessInformationModel
 
 
 def login(request: HttpRequest):
@@ -81,6 +83,17 @@ def viewFiles(request):
     else:
         return render(request, 'registration/linux-login.html')
 
+def getFrequents(request):
+    if request.method == "GET":
+        mc_user = UserAccessInformationModel.objects.values("username").annotate(count=Count('username')).order_by("-count")
+        print(type(mc_user))
+        print(f'MOST COMMON USER NAME: \n {mc_user[0]}')
+        mc_pass = UserAccessInformationModel.objects.values("passwd").annotate(count=Count('passwd')).order_by("-count")
+        print(f'MOST COMMON PASSOORD: \n {mc_pass[0]}')
+        most_commons = {'most_common_username': mc_user[0], 'most_common_password': mc_pass[0]}
+        return render(request, 'mostCommon.html', most_commons)
+    else:
+        return render(request, 'registration/linux-login.html')
 # def signup(request):
 #     if request.user.is_authenticated:
 #         return redirect('/')
